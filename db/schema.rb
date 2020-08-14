@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_13_140245) do
+ActiveRecord::Schema.define(version: 2020_08_14_152923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,12 +27,13 @@ ActiveRecord::Schema.define(version: 2020_08_13_140245) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
-    t.string "image_url"
     t.string "phone"
     t.float "rating"
     t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "photos", default: [], null: false, array: true
+    t.string "tags", default: [], null: false, array: true
   end
 
   create_table "reviews", force: :cascade do |t|
