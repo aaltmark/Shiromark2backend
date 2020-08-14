@@ -10,7 +10,7 @@ BUSINESS_PATH = "/v3/businesses/"
 DEFAULT_BUSINESS_ID = "6ZTUF9PxuTlLnE2N-wRNlA"
 DEFAULT_TERM = "dinner"
 DEFAULT_LOCATION = "New York City, NY"
-SEARCH_LIMIT = 50
+SEARCH_LIMIT = 10
 
 # Make a request to the Fusion search endpoint. Full documentation is online at:
 # https://www.yelp.com/developers/documentation/v3/business_search
@@ -81,18 +81,24 @@ end
 
 restsArray = id_array.map do |id|
     businessObj = business(id)
+    priceVar = '$'
+    
+    if businessObj['price']
+      priceVar = businessObj['price']
+    end
+
     restaurantObj = {
         name: businessObj['name'],
         phone: businessObj['display_phone'],
         rating: businessObj['rating'],
+        price: priceVar,
         location: businessObj['location']['display_address'].join(' | '),
         photos: businessObj['photos'],
         tags: businessObj['categories'].map {|tagObj| tagObj['title']}
     }
-    # 
 end
 
-puts restsArray.length
+# puts restsArray
 
 restsArray.each do |restaurant|
   Restaurant.create(restaurant)
