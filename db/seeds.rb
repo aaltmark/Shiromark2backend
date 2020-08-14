@@ -51,11 +51,6 @@ def search(term=DEFAULT_TERM, location=DEFAULT_LOCATION)
   response.parse
 end
 
-results = search()
-
-id_array = results['businesses'].map do |result|
-    result['id']
-end
 # Look up a business by a given business id. Full documentation is online at:
 # https://www.yelp.com/developers/documentation/v3/business
 # 
@@ -78,7 +73,13 @@ def business(business_id=DEFAULT_BUSINESS_ID)
   response.parse
 end
 
-id_array.each do |id|
+results = search()
+
+id_array = results['businesses'].map do |result|
+  result['id']
+end
+
+restsArray = id_array.map do |id|
     businessObj = business(id)
     restaurantObj = {
         name: businessObj['name'],
@@ -88,7 +89,13 @@ id_array.each do |id|
         photos: businessObj['photos'],
         tags: businessObj['categories'].map {|tagObj| tagObj['title']}
     }
-    Restaurant.create(restaurantObj)
+    # 
+end
+
+puts restsArray.length
+
+restsArray.each do |restaurant|
+  Restaurant.create(restaurant)
 end
 
 # puts JSON.pretty_generate(business())
