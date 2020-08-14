@@ -10,7 +10,7 @@ BUSINESS_PATH = "/v3/businesses/"
 DEFAULT_BUSINESS_ID = "6ZTUF9PxuTlLnE2N-wRNlA"
 DEFAULT_TERM = "dinner"
 DEFAULT_LOCATION = "New York City, NY"
-SEARCH_LIMIT = 10
+SEARCH_LIMIT = 50
 
 # Make a request to the Fusion search endpoint. Full documentation is online at:
 # https://www.yelp.com/developers/documentation/v3/business_search
