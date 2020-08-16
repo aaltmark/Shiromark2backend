@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
 
     def create 
         @review = Review.create(review_params)
+        # byebug
         if @review.valid? 
             render json: { review: ReviewSerializer.new(@review) }, status: :created 
         else 
@@ -38,6 +39,6 @@ class ReviewsController < ApplicationController
  
     private
     def review_params
-        params.require(:review).permit(:rating, :user_id, :restaurant_id, :content)
+        params.require(:review).permit(:rating, :user_id, :restaurant_id, :content, :title)
     end
 end
