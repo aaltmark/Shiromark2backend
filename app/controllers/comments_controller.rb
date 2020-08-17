@@ -14,7 +14,6 @@ class CommentsController < ApplicationController
         render json: { message: 'comment has been deleted'}
     end 
 
- 
     private
     def comment_params
         params.require(:comment).permit(:content, :user_id, :review_id)
