@@ -1,5 +1,5 @@
 class ReviewSerializer < ActiveModel::Serializer
-  attributes :id, :title, :rating, :content, :restaurant_id, :restaurant_name, :user_id, :user_name, :comments, :created_at
+  attributes :id, :title, :rating, :content, :restaurant_id, :restaurant_name, :user_id, :user_name, :user_image, :comments, :created_at
   
   has_many :comments 
 
@@ -17,6 +17,10 @@ class ReviewSerializer < ActiveModel::Serializer
 
   def user_id
     self.object.user.id
+  end
+
+  def user_image
+    self.object.user.image
   end
 
   def comments
