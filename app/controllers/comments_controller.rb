@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
     def create 
         @comment = Comment.create(comment_params)
         if @comment.valid? 
-            render json: { review: CommentSerializer.new(@comment) }, status: :created 
+            render json: { comment: CommentSerializer.new(@comment) }, status: :created 
         else 
             render json: { error: 'failed to create comment' }, status: :not_acceptable
         end
