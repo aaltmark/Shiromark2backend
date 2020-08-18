@@ -46,4 +46,6 @@ gem "active_model_serializers", "~> 0.10.10"
 
 gem "fake", "~> 1.42"
 
+gem 'faker'
+
 gem "http"
