@@ -16,7 +16,7 @@ class UsersController < ApplicationController
             token = encode_token({ user_id: @user.id })
             render json: { user: UserSerializer.new(@user), jwt: token }, status: :created 
         else 
-            render json: { error: 'failed to create user' }, status: :not_acceptable
+            render json: { error: 'Please fill out all required fields' }, status: :not_acceptable
         end
     end
 
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
         if user.valid?
             render json: user
         else
-            render json: { error: 'invalid user' }
+            render json: { error: 'Please fill out all required fields' }
         end 
     end
 
