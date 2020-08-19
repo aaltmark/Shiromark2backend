@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
         if @review.valid? 
             render json: { review: ReviewSerializer.new(@review) }, status: :created 
         else 
-            render json: { error: 'failed to create review' }, status: :not_acceptable
+            render json: { error: 'Please fill out all required fields. You can only leave 1 review per restaurant.' }, status: :not_acceptable
         end
     end
 
@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
         if review.valid?
             render json: review 
         else 
-            render json: { error: 'invalid review' }
+            render json: { error: 'Please fill out all required fields. You can only leave 1 review per restaurant.' }
         end 
     end 
 
